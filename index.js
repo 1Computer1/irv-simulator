@@ -89,7 +89,7 @@ function candidateName(name, status) {
         win: 'text-success',
         out: 'text-muted',
         normal: 'text-light'
-    }[status] ?? 'bg-primary';
+    }[status] ?? 'text-primary';
     return `<div class="${color} pe-2">${escapeHtml(name)}</div>`;
 }
 
@@ -105,7 +105,7 @@ function escapeHtml(unsafe) {
 function progressBar(count, total, status) {
     if (status === 'out') {
         return `
-            <div class="progress bg-dark" style="height: 25px">
+            <div class="progress bg-transparent" style="height: 25px">
                 <div class="progress-bar" style="width: 0%"></div>
             </div>
         `;
@@ -120,7 +120,7 @@ function progressBar(count, total, status) {
     }[status] ?? 'bg-primary';
 
     return `
-        <div class="progress bg-dark" style="height: 25px">
+        <div class="progress bg-transparent" style="height: 25px">
             <div class="progress-bar ${color}" style="width: ${pc}%">${count} (${rpc}%)</div>
         </div>
     `;
