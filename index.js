@@ -83,7 +83,7 @@ function formatRound(candidates, { tallies, total, exhausted, eliminated, winner
         text += progressBar(count, total, status);
     }
 
-    text += `<span class="mt-3">${exhausted} ${exhausted === 1 ? 'ballot' : 'ballots'} were exhausted.</span>`;
+    text += `<span class="mt-3">${exhausted} ${exhausted === 1 ? 'ballot was' : 'ballots were'} exhausted.</span>`;
     text += '</div>';
     return text;
 }
