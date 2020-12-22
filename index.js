@@ -21,8 +21,13 @@ function run() {
     const q = window.location.pathname + '?' + sps.toString();
     history.pushState(null, '', q);
 
-    if (!candidatesInput.value || !ballotsInput.value) {
-        resultDiv.innerHTML = '<p class="lead text-danger">Error: No candidates and ballots inputted.</p>';
+    if (!candidatesInput.value.trim()) {
+        resultDiv.innerHTML = '<p class="lead text-danger">Error: No candidates inputted.</p>';
+        return;
+    }
+
+    if (!ballotsInput.value.trim()) {
+        resultDiv.innerHTML = '<p class="lead text-danger">Error: No ballots inputted.</p>';
         return;
     }
 
@@ -34,10 +39,10 @@ function run() {
         for (const { reason, i } of ballots.value) {
             const msg = {
                 nan: 'Input is not a sequence of numbers.',
-                oob: 'Candidate number is out of bounds.',
-                unique: 'Candidates must only appear once in ballot.'
+                oob: 'A candidate number is out of bounds.',
+                unique: 'A candidate appears twice in the ballot.'
             }[reason] ?? 'Unknown error.';
-            text += `Ballot ${i + 1}: ${msg}<br>`;
+            text += `Error: Ballot ${i + 1}: ${msg}<br>`;
         }
 
         text += '</p>';
