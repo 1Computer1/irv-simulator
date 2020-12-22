@@ -132,11 +132,11 @@ function progressBar(count, total, status) {
 }
 
 function parseCandidates(input) {
-    return input.split(/\n+/);
+    return input.split(/\n+/).filter(x => x);
 }
 
 function parseBallots(numCandidates, input) {
-    const lines = input.split(/\n+/);
+    const lines = input.split(/\n+/).filter(x => x);
     const ballots = [];
     const errors = [];
     for (let i = 0; i < lines.length; i++) {
