@@ -2,10 +2,6 @@ const candidatesInput = document.querySelector('#candidates');
 const ballotsInput = document.querySelector('#ballots');
 const resultDiv = document.querySelector('#results');
 
-const searchParams = new URLSearchParams(window.location.search);
-candidatesInput.value = searchParams.get('c') || candidatesInput.value;
-ballotsInput.value = searchParams.get('b') || ballotsInput.value;
-
 function ok(value) {
     return { ok: true, value };
 }
@@ -20,6 +16,11 @@ function run() {
     sps.set('b', ballotsInput.value);
     const q = window.location.pathname + '?' + sps.toString();
     history.pushState(null, '', q);
+
+    if (!candidatesInput.value.trim() && !ballotsInput.value.trim()) {
+        resultDiv.innerHTML = '<p class="lead text-danger">Error: No candidates nor ballots inputted.</p>';
+        return;
+    }
 
     if (!candidatesInput.value.trim()) {
         resultDiv.innerHTML = '<p class="lead text-danger">Error: No candidates inputted.</p>';
@@ -221,4 +222,12 @@ function simulateOne(candidates, eliminatedSet, ballots) {
     }
 
     return err({ tallies, total, exhausted, eliminated });
+}
+
+const searchParams = new URLSearchParams(window.location.search);
+candidatesInput.value = searchParams.get('c') || candidatesInput.value;
+ballotsInput.value = searchParams.get('b') || ballotsInput.value;
+
+if (searchParams.get('c') || searchParams.get('b')) {
+    run();
 }
