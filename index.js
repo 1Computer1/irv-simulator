@@ -56,7 +56,8 @@ function run() {
     text += `<h4>Round ${rounds.length + 1}</h4>`;
     text += formatRound(candidates, final);
     text += '<hr>';
-    text += `<h4 class="text-center">Winner: ${candidates[final.winner - 1]}</h4>`;
+    text += '<h4 class="display-4 text-center">Winner</h4>';
+    text += `<h5 class="display-5 text-center text-success">${candidates[final.winner - 1]}</h5>`;
 
     resultDiv.innerHTML = text;
 }
